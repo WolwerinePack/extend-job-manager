@@ -1,0 +1,16 @@
+{
+    "name": "jose.fortuny/aerith",
+    "description": "Surcouche de WP Job Manager",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Fortuny",
+            "email": "fortuny.jose@gmail.com"
+        }
+    ],
+    "autoload": {
+    	"psr-4": {
+		"app\\": "src/app/"
+		}
+	}
+}

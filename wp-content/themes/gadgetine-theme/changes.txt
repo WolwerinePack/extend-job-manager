@@ -1,0 +1,258 @@
+******************* VERSION 3.0.10 *******************
+
+***************************************************
+
+*Edited Files
+style.css
+includes/gallery-single-style-1.php
+includes/lib/plugins/js_composer.zip
+
+******************* VERSION 3.0.9 *******************
+
+***************************************************
+*Edited Files
+style.css
+includes/lib/plugins/js_composer.zip
+functions/filters.php
+
+******************* VERSION 3.0.8 *******************
+
+***************************************************
+*Edited Files
+style.css
+includes/lib/plugins/js_composer.zip
+includes/widgets/init.php
+functions/ajax.php
+js/scripts.js
+
+
+******************* VERSION 3.0.7 *******************
+
+***************************************************
+*Edited Files
+style.css
+includes/lib/plugins/js_composer.zip
+includes/widgets/widget-ad160x600.php
+includes/widgets/widget-ad300x250.php
+includes/widgets/widget-gadgetine-aweber.php
+includes/widgets/widget-gadgetine-comments.php
+includes/widgets/widget-gadgetine-contact.php
+includes/widgets/widget-gadgetine-gallery.php
+includes/widgets/widget-gadgetine-latest-posts.php
+includes/widgets/widget-gadgetine-popular-posts.php
+includes/widgets/widget-gadgetine-social.php
+functions/filters.php
+
+******************* VERSION 3.0.6 *******************
+
+***************************************************
+*Edited Files
+style.css
+js/scripts.js
+template-contact.php
+
+******************* VERSION 3.0.5 *******************
+
+***************************************************
+*Edited Files
+style.css
+includes/lib/plugins/js_composer.zip
+includes/lib/class-tgm-plugin-activation.php
+includes/widgets/widget-gadgetine-comments.php
+includes/single/about-author.php
+functions/filters.php
+functions/other.php
+
+******************* VERSION 3.0.4 *******************
+
+***************************************************
+*Edited Files
+style.css
+functions/others.php
+functions/filters.php
+comments.php
+includes/admin/functions/general.php
+functions/ajax.php
+
+******************* VERSION 3.0.3 *******************
+
+***************************************************
+*Edited Files
+style.css
+includes/admin/functions/sidebar.php
+functions/register.php
+includes/sidebar.php
+js/theme-scripts.js
+css/main-stylesheet.css
+
+******************* VERSION 3.0.2 *******************
+
+***************************************************
+*Edited Files
+style.css
+includes/admin/functions/general.php
+
+
+******************* VERSION 3.0.1 *******************
+
+***************************************************
+*Edited Files
+style.css
+includes/admin/buttons-formatting/custom-editor-style.css
+includes/lib/plugins/js_composer.zip
+js/admin/scripts.js
+
+
+******************* VERSION 3.0 *******************
+
+***************************************************
+Major update
+
+
+******************* VERSION 2.5 *******************
+
+***************************************************
+*Edited files
+upload-handler.php
+timthumb.php
+
+
+******************* VERSION 2.0 *******************
+
+***************************************************
+IMPROVEMENTS:
+1) Added Galleries
+2) Added Homepage slider
+3) The New Orange Themes Control panel
+4) Added Google + Button
+5) New Gallery Widget
+6) Simple Image Upload!
+7) Added Second Level Menu
+
+
+
+******************* VERSION 1.2 *******************
+
+***************************************************
+IMPROVEMENTS:
+1) Language (POT) files added .
+2) Updated thumbnail sistem
+3) Now you can choose where to have coments, under the post or on new page (jQuery)
+
+BUG FIXES:
+1) Thumbnail bug fix.
+
+
+******************* VERSION 1.1 *******************
+
+***************************************************
+IMPROVEMENTS:
+1) Drop down menu functionality added.
+2) Another layer of thumbnail generation added. If no other thumbnail is specified, theme will generate thumb from the first image of the article (but only if the image is uploaded via wordpress media manager).
+3) Added new page template - non full width page (with both sidebars).
+4) Theme comes bundled with Amikelive Adsense Widget for easier use of adsense banners in the sidebar.
+
+BUG FIXES:
+1) Twitter share bug fixed.
+2) Middle sidebar category bug fixed.
+
+
+
+******************* VERSION 1.0.6 *******************
+*****************************************************
+
+IMPROVEMENTS:
+
+1) Added support for custom category and tag base names. For instance, now your permalinks can look like www.example.com/my-category-name/example-post
+
+BUG FIXES:
+
+1) Fixed single post page similar article bug
+
+2) Fixes youtube resizer error un IE.
+
+
+
+******************* VERSION 1.0.5 *******************
+*****************************************************
+IMPROVEMENTS:
+
+1) Theme now supports Wordpress thumbnail system. Just click "set featured picture" on your left in wp-admin post edit page, and select image.
+
+2) Automatic Youtube embed video resizer.
+
+3) Theme Configuration panel is now included by default, no plugin needed.
+
+4) Added aditional filters to first category page, so incorrectly formated content has less chances to damage page layout.
+
+BUG FIXES:
+
+1) Fixed bug with post tags.
+
+
+******************* VERSION 1.0.4 *******************
+*****************************************************
+
+
+1) Fixed social icons which, in some cases, seemed to resize incorrectly;
+
+2) Some textual and visual fixes.
+
+
+******************* VERSION 1.0.3 *******************
+*****************************************************
+
+
+BUG FIXES:
+
+1)	Fixed minor issue with Menu misplacement in first page which took place if homepage was not defined.
+	
+2)	Fixed minor issue with images in search results and category pages.
+	
+IMPROVEMENTS:
+
+1)	Improved the functionality of image resizer - it now resizes caption frames too.
+
+
+
+******************* VERSION 1.0.2 *******************
+*****************************************************
+
+
+BUG FIXES:
+
+1)	Fixed SEO problem with <H1> tags. Now only one H1 per page.
+
+2)	Fixed problem with category URLs in news block headers.
+	
+3)	Fixed other minor visual and texual errors. 
+	
+
+IMPROVEMENTS:
+
+1)	Added new option to admin panel - you can now switch on/off RSS icon and left side following RSS banner.
+
+
+
+******************* VERSION 1.0.1 *******************
+*****************************************************
+
+
+BUG FIXES:
+
+1)	Convert all PHP script opening tags to "<?php" from "<?";
+This solves the PHP error:
+"I get a lot of errors with your theme Òsyntax error, unexpected $endÓ
+which occurs, when webservers PHP config has "asp_tags=0"
+
+	
+2)	Resolved issue with reseting news block settings.
+	
+
+IMPROVEMENTS:
+
+1) If article has no image specified, a default one is shown, thus avoiding resizing of templates structure in some browers;
+
+2) New function added to functions.php - news_blocks. It allows to output the 5 similar news blocks by just specifying the blocks position. Thus, your theme no longer needs files: news_left_top.php; news_left_middle.php; news_left_bottom.php; news_center_top.php; news_center_middle.php; Feel free to delete them;
+
+3) New improved version of image resize script added; Please ensure, that its file has the same permissions as the previous one.
