@@ -20,6 +20,7 @@ global $post;
 $post_ID = get_the_ID();
 $salaries = wp_get_post_terms( $post_ID, 'salaire', 'all' );
 $salary = $salaries[0]->name;
+$zip = get_post_meta( $post_ID, 'geolocation_postcode', true );
 $town= get_post_meta( $post_ID, 'geolocation_city', true );
 get_post_meta( $post->ID, 'geolocation_state_long', true );
 $types = wpjm_get_the_job_types();
@@ -41,9 +42,8 @@ $profil = get_post_meta( $post->ID, '_job_profil', true );
 				<i class="icon ion-ios-location"></i>
 				<?php echo ' '.$town; ?>
 			</li>
-			<li>
-				
-				<?php the_job_location( false ); ?>
+			<li>				
+				<?php echo ' '.$zip; ?>
 			</li>
 		</ul>
 		<ul class="meta">

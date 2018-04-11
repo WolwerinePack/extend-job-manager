@@ -14,10 +14,11 @@
 		get_footer();
 	} else if ($post_type== job_listing) {
 		require_once('job_single.php');
-	
-	} else if ($post_type == advert){ ?>
-		
-		
+
+	} else if ($post_type== post) {
+		require_once('company_single.php');
+
+	} else if ($post_type == advert){ ?>		
 		 <!-- BEGIN .content -->
 			<section class="content">				
 				<!-- BEGIN .wrapper -->
@@ -90,7 +91,6 @@
         <?php get_footer();?>
 		 
 	<?php }else { 
-			
 		get_template_part(THEME_INCLUDES.'news','single');		
 		get_footer();
 	}

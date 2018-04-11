@@ -37,6 +37,8 @@ class edit_fields
 
 		add_filter( 'submit_job_form_fields',array ($this, 'custom_company_logo_job_form_fields') );
 
+		add_shortcode( 'job_manager_companies_plus', array( $this, 'shortcode_plus' ) );
+
 	}
 
 	/**
@@ -219,5 +221,92 @@ class edit_fields
 		$fields['company']['company_logo']['description'] = "Taille conseillée pour un affichage optimum : 130 * 130 pixel . Taille du fichier limitée a 8mb";
 		return $fields;
 	}
-		
+
+	/**
+	 * Register the `[job_manager_companies_plus]` shortcode.
+	 *
+	 * @since WP Job Manager - Company Profiles 1.0
+	 *
+	 * @param array $atts
+	 * @return string The shortcode HTML output
+	 */
+	public function shortcode_plus( $atts ) {
+		$atts = shortcode_atts( array(
+			'show_letters' => true
+		), $atts );
+
+		wp_enqueue_script( 'jquery-masonry' );
+	?>
+		<script type="text/javascript">
+		jQuery(function($) {
+			$('.companies-overview').masonry({
+				itemSelector : '.company-group',
+				isFitWidth   : true
+			});
+		});
+		</script>
+	<?php
+	return $this->build_company_archive_plus( $atts );
+	}
+
+	/**
+	 * Ajoute un nouveau shortcode afin d'afficher les clients PREMIUM
+	 *
+	 * Not very flexible at the moment. Only can deal with english letters.
+	 *
+	 * @since WP Job Manager - Company Profiles 1.0
+	 *
+	 * @param array $atts
+	 * @return string The shortcode HTML output
+	 */
+	public function build_company_archive_plus( $atts ) {
+		global $wpdb;
+		$output      = '';
+		$companies   = $wpdb->get_col(
+			"SELECT p.post_title FROM {$wpdb->postmeta} pm
+			 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+			 WHERE p.post_status = 'publish'
+			 AND p.post_type = 'post'
+			 GROUP BY p.post_title
+			 ORDER BY p.post_title"
+		);
+		$_companies = array();
+
+		foreach ( $companies as $company ) {
+			$_companies[ strtoupper( $company[0] ) ][] = $company;
+		}
+
+		if ( $atts[ 'show_letters' ] ) {
+			$output .= '<div class="company-letters">';
+
+			foreach ( range( 'A', 'Z' ) as $letter ) {
+				$output .= '<a href="#' . $letter . '">' . $letter . '</a>';
+			}
+
+			$output .= '</div>';
+		}
+
+		$output .= '<ul class="companies-overview">';
+
+		foreach ( range( 'A', 'Z' ) as $letter ) {
+			if ( ! isset( $_companies[ $letter ] ) )
+				continue;
+
+			$output .= '<li class="company-group"><div id="' . $letter . '" class="company-letter">' . $letter . '</div>';
+			$output .= '<ul>';
+
+			foreach ( $_companies[ $letter ] as $company_name ) {
+				$count = count( get_posts( array( 'post_type' => 'job_listing', 'meta_key' => '_company_name', 'meta_value' => $company_name, 'nopaging' => true ) ) );
+
+				$output .= '<li class="company-name"><a href="' . site_url().'/'. $company_name  . '">' . esc_attr( $company_name ) . ' (' . $count . ')</a></li>';
+			}
+
+			$output .= '</ul>';
+			$output .= '</li>';
+		}
+
+		$output .= '</ul>';
+
+		return $output;
+	}
 }

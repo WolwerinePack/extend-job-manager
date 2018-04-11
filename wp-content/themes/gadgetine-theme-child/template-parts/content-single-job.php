@@ -16,7 +16,7 @@ Single job page
     }
     $company_website = get_post_meta( $post_ID, '_company_website', true);
     $company_name = get_post_meta( $post_ID, '_company_name', true);
-    $location = get_post_meta( $post_ID, '_job_location', true);
+    $location = get_post_meta( $post_ID, 'geolocation_postcode', true);
     $company_video = get_post_meta( $post_ID, '_company_video', true);
     $job_types = wp_get_post_terms( $post_ID, 'job_listing_type', 'all' );
         foreach ($job_types as $job_type ) {

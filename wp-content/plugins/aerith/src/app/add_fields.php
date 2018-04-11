@@ -310,10 +310,10 @@ class add_fields
             'order' => ASC,
             'hide_empty' => false,  ) ); 
         ?>
-			<p  id="4" class="default"><i class="icon ion-android-add-circle"></i> Niveau d\'expérience
+			<p  id="4" class="default"><i class="icon ion-android-add-circle"></i> Niveau d'expérience
 				<ul class="job_types default"  id="40">
 				<?php foreach ($terms as $term ) : ?>
-					<li><label for="experience_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"></label><input class="check" type="checkbox" name="filter_experience[]" value="<?php echo $term->slug; ?>"  id="experience_<?php echo $term->slug; ?>" /> <?php echo $term->name; ?></li>
+					<li><label for="experience_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><input class="check" type="checkbox" name="filter_experience[]" value="<?php echo $term->slug; ?>"  id="experience_<?php echo $term->slug; ?>" /> <?php echo $term->name; ?></label></li>
 				<?php endforeach; ?>		
 				</ul>
 			</p>
@@ -552,7 +552,7 @@ class add_fields
 			'label'       => __( 'Nom ', 'wp-job_manager' ),
 			'type'        => 'text',
 			'required'    => true,
-			'priority'    => 10
+			'priority'    => 11
 	  	);
 		return $fields;
 	}
@@ -579,7 +579,7 @@ class add_fields
 			'label'       => __( 'Prenom ', 'wp-job_manager' ),
 			'type'        => 'text',
 			'required'    => true,
-			'priority'    => 11
+			'priority'    => 12
 	  	);
 		return $fields;
 	}
@@ -606,7 +606,7 @@ class add_fields
 			'label'       => __( 'Téléphone ', 'wp-job_manager' ),
 			'type'        => 'text',
 			'required'    => true,
-			'priority'    => 12
+			'priority'    => 13
 	  	);
 		return $fields;
 	}
@@ -633,7 +633,7 @@ class add_fields
 			'label'       => __( 'Courriel ', 'wp-job_manager' ),
 			'type'        => 'text',
 			'required'    => true,
-			'priority'    => 13
+			'priority'    => 14
 	  	);
 		return $fields;
 	}
@@ -730,7 +730,78 @@ class add_fields
 	  			});
 		    });
 	  		
-		</script><?php 
+		</script>
+		<script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      var placeSearch, autocomplete;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        var options = {
+			types: ['(region)'],
+			componentRestrictions: {country: 'fr'}
+		};
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('job_location')),
+            {types: ['(regions)'], componentRestrictions: {country: 'fr'} });
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        for (var component in componentForm) {
+          document.getElementById(component).value = '';
+          document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+          }
+        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAo_IFjU8w01LdnAH5i7v93u20Zti1Nek&libraries=places&callback=initAutocomplete"
+        async defer>
+    </script><?php 
 		return $fields;
 	}
 

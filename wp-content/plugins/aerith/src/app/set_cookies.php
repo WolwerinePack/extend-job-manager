@@ -14,7 +14,6 @@ class set_cookies
 		add_action( 'job_manager_update_job_data',array ($this, 'inject_cookie_ctwitter_job_manager_update_job_data') );
 		add_action( 'job_manager_update_job_data',array ($this, 'inject_cookie_cfacebook_job_manager_update_job_data') );
 		add_action( 'job_manager_update_job_data',array ($this, 'inject_cookie_clinkedin_job_manager_update_job_data') );
-		/*add_action( 'job_manager_update_job_data',array ($this, 'inject_cookie_cprofil_job_manager_update_job_data') );*/
 		add_action( 'job_manager_update_job_data',array ($this, 'inject_cookie_crh_job_manager_update_job_data') );
 		add_action( 'job_manager_update_job_data',array ($this, 'inject_cookie_cprenomrh_job_manager_update_job_data') );
 		add_action( 'job_manager_update_job_data',array ($this, 'inject_cookie_ctelrh_job_manager_update_job_data') );
@@ -36,8 +35,6 @@ class set_cookies
 		add_filter( 'submit_job_form_fields_get_user_data',array ($this, 'add_values_cookie_cfacebook') );
 		add_filter( 'submit_job_form_fields',array ($this, 'add_values_cookie_clinkedin') );
 		add_filter( 'submit_job_form_fields_get_user_data',array ($this, 'add_values_cookie_clinkedin') );
-		/*add_filter( 'submit_job_form_fields',array ($this, 'add_values_cookie_cprofil') );
-		add_filter( 'submit_job_form_fields_get_user_data',array ($this, 'add_values_cookie_cprofil') );*/
 		add_filter( 'submit_job_form_fields',array ($this, 'add_values_cookie_crh') );
 		add_filter( 'submit_job_form_fields_get_user_data',array ($this, 'add_values_cookie_crh') );
 		add_filter( 'submit_job_form_fields',array ($this, 'add_values_cookie_cprenomrh') );
@@ -92,11 +89,6 @@ class set_cookies
 			$c_linkedin=sanitize_textarea_field($_POST['company_linkedin']);
 			setcookie( 'c_linkedin', $c_linkedin, time() + 365 * DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
 		}
-		/*if(isset( $_POST['company_profil'] ))
-		{
-			$c_profil=sanitize_textarea_field($_POST['company_profil']);
-			setcookie( 'c_profil', $c_profil, time() + 365 * DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
-		}*/
 		if(isset( $_POST['company_rh'] ))
 		{
 			$c_rh=sanitize_textarea_field($_POST['company_rh']);

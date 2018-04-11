@@ -6,29 +6,23 @@
 	$link = get_permalink();
 ?>
 <?php get_template_part(THEME_LOOP."loop-start"); ?>
-<!-- BEGIN .main-content-spacy -->
-<section class="content">               
-    <!-- BEGIN .wrapper -->
+<section class="content">   
     <div class="wrapper"> 
         <div class="main-content-wrapper   big-sidebar-right">
         	<div class="main-content">
 				<div class="main-content-spacy">
-					<!-- BEGIN .def-panel -->
 					<div class="def-panel">
 						<div class="panel-content shortocde-content">
-						</div>
-						<div class="pure-g">
-			                <div class="pure-u-16-24">
+							<div class="article-content">
 								<?php the_content();?>
-							</div>
-							<div class="pure-u-1-24"></div>
-			                <div class="pure-u-7-24">
-								<?php  dynamic_sidebar('sidebar-jobs'); ?>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<aside id="sidebar">
+				<?php  dynamic_sidebar('sidebar-jobs'); ?>
+			</aside>
 		</div>
 	</div>
 </section>

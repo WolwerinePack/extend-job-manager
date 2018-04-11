@@ -39,7 +39,7 @@ class send_emails
 		$head = site_url()."/wp-content/uploads/job-manager-uploads/company_logo/2018/04/logo-ITGA-130x130px.png";
 		$foot = site_url()."/wp-content/uploads/2018/03/LOGO-DIMAG-JOB.png";
 		$headers = array('Content-Type: text/html; charset=UTF-8');
-		$message = "<img src='".$head."'><br />Bonjour,<br /> L’équipe DimagJob a le plaisir de vous annoncer que votre offre d’emploi est publiée sur le site DimagJob pour une durée de 60 jours. <br />Vous pouvez consulter votre annonce sur le lien suivant <a href='".get_permalink( $post_id )."'>".$post->post_title."</a><br />Vous souhaitez poster une nouvelle offre d’emploi ? C’est par <a href='".site_url()."/publiez-une-annonce/'>ici</a><br /><br />A bientôt sur DimagJob !<br /><img src='".$foot."'>";
+		$message = "<img src='".$head."'><br />Bonjour,<br /><br />L’équipe DimagJob a le plaisir de vous annoncer que votre offre d’emploi est publiée sur le site DimagJob pour une durée de 60 jours. <br />Vous pouvez consulter votre annonce sur le lien suivant <a href='".get_permalink( $post_id )."'>".$post->post_title."</a><br />Vous souhaitez poster une nouvelle offre d’emploi ? C’est par <a href='".site_url()."/publiez-une-annonce/'>ici !</a><br /><br />A bientôt sur DimagJob !<br /><img src='".$foot."'>";
 		
 		wp_mail($author, "Votre offre d’emploi est en ligne !", $message, $headers);
 	}
@@ -59,7 +59,9 @@ class send_emails
 		$head = site_url()."/wp-content/uploads/job-manager-uploads/company_logo/2018/04/logo-ITGA-130x130px.png";
 		$foot = site_url()."/wp-content/uploads/2018/03/LOGO-DIMAG-JOB.png";
 		$headers = array('Content-Type: text/html; charset=UTF-8');
-		$message = "<img src='".$head."'><br />Bonjour,<br />Votre demande de publication de l’offre ".$post->post_title." publiée le ".$date." a été refusée.<br />Pour avoir plus d’informations veuillez contacter le 02 0202 020202.<br /><img src='".$foot."'>";
+		$message = "<img src='".$head."'><br />Bonjour,<br /><br />Votre demande de publication de l’offre de \"".$post->post_title."\" publiée le ".$date." a été refusée.<br />Pour avoir plus d’informations veuillez contacter le 02 0202 020202.<br /><br />
+		L'équipe Dimagjob.<br />
+		<img src='".$foot."'>";
 
 		wp_mail($author, "Information sur votre offre d’emploi ", $message,$headers);
 	}
@@ -76,7 +78,7 @@ class send_emails
 		$head = site_url()."/wp-content/uploads/job-manager-uploads/company_logo/2018/04/logo-ITGA-130x130px.png";
 		$foot = site_url()."/wp-content/uploads/2018/03/LOGO-DIMAG-JOB.png";
 	 	$headers = array('Content-Type: text/html; charset=UTF-8');
-	    $message = "<img src='".$head."'><br />Bonjour,<br />Votre offre d’emploi <a href='".get_permalink( $post_id )."'>".$post->post_title."</a> a expirée et n’est donc plus visible sur le site DimagJob.<br />Vous souhaitez poster une nouvelle offre d’emploi ? C’est par <a href='".site_url()."/publiez-une-annonce/'>ici</a><br /><br />A bientôt sur DimagJob !<br /><img src='".$foot."'>";
+	    $message = "<img src='".$head."'><br />Bonjour,<br /><br />Votre offre d’emploi \"<a href='".get_permalink( $post_id )."'>".$post->post_title."</a>\" a expirée et n’est donc plus visible sur le site DimagJob.<br />Vous souhaitez poster une nouvelle offre d’emploi ? C’est par <a href='".site_url()."/publiez-une-annonce/'>ici!</a><br /><br />A bientôt sur DimagJob !<br /><img src='".$foot."'>";
 	    wp_mail( $author, "Votre offre d’emploi a expirée  !", $message, $headers );
 	}
 }

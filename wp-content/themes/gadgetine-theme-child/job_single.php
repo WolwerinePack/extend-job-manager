@@ -12,25 +12,20 @@
 	$company_name = get_post_meta( $post_ID, '_company_name', true);
 	$company_url =home_url( '/entreprise/' . trailingslashit( $company_name ) );
 ?>
-	<section class="content">
-	    <div class="wrapper">
-	    	<div class="main-content-wrapper   big-sidebar-right">
-                <div class="main-content">
-                	<div class="pure-g">
-						<div class="pure-u-24-24">
-                			<div class="def-panel">
-								<div class="panel-content shortocde-content">
-									<div class="article-header">
-	    								<div class="article-header-info">
-	    									<span class="article-header-meta">
-	    										<span class="article-header-meta-date"><h1 style="color: #3F484F"><a href=<?php echo $company_url ?>><?php echo $company_name ?></a></h1></span>
-											</span>
-										</div>
-									</div>
-								</div>
+<section class="content">
+    <div class="wrapper">
+    	<div class="main-content-wrapper   big-sidebar-right">
+            <div class="main-content">
+       			<div class="def-panel">
+					<div class="panel-content shortocde-content">
+						<div class="article-header">
+							<div class="article-header-info">
+								<span class="article-header-meta">
+									<span class="article-header-meta-date"><h1 style="color: #3F484F"><a href=<?php echo $company_url ?>><?php echo $company_name ?></a></h1></span>
+								</span>
 							</div>
 						</div>
-						<div class="pure-u-18-24">
+						<div class="article-content">
 							<?php
 								while ( have_posts() ) : the_post();
 									get_template_part( 'template-parts/content-single');
@@ -42,15 +37,15 @@
 								endwhile; // End of the loop.
 							?>
 						</div>
-						<div class="pure-u-6-24">
-							<?php  dynamic_sidebar('sidebar-jobs'); ?>
-						</div>
 					</div>
 				</div>
 			</div>
+			<aside id="sidebar">
+                    <?php  dynamic_sidebar('sidebar-jobs'); ?>
+            </aside>
 		</div>
-	</section>
-	<!-- End Section Content -->
+	</div>
+</section>
 <?php
 get_footer();
 

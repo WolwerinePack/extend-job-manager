@@ -37,7 +37,8 @@ global $post;
 			$diags = wp_get_post_terms( $post_ID, 'diagnostic', 'all' );
 			$experiences = wp_get_post_terms( $post_ID, 'experience', 'all' );
 			$salaries = wp_get_post_terms( $post_ID, 'salaire', 'all' );
-			$salary = $salaries[0]->name;
+			$salary = $salaries[0]->name;			
+			$zip = get_post_meta( $post_ID, 'geolocation_postcode', true );
 			$zone = get_post_meta( $post->ID, 'geolocation_state_long', true );
 			$town= get_post_meta( $post->ID, 'geolocation_city', true ); 
 			$company_linkedin = get_post_meta( $post_ID, '_company_linkedin', true);
@@ -55,14 +56,17 @@ global $post;
 		<?php endforeach; endif; ?>
 	<?php } ?>
 
-	<li class="location"><?php the_job_location(); ?>
-	<?php if ( $town ) { ?>
-    		<?php echo esc_html( $town ) ?>
-  	<?php }
-	if ( $zone ) { ?>
-    		<?php echo esc_html( $zone ) ?></li>
-  	<?php } ?>
-
+	<li class="location">
+		<?php if ( $zip ) { ?>
+	    		<a class="google_map_link" href="http://maps.google.com/maps?q=<?php echo esc_html( $zip ) ?>&amp;zoom=14&amp;size=512x512&amp;maptype=roadmap&amp;sensor=false" target="_blank"><?php echo esc_html( $zip ) ?></a>
+	  	<?php }
+		if ( $town ) { ?>
+	    		<?php echo esc_html( $town ) ?>
+	  	<?php }
+		if ( $zone ) { ?>
+	    		<?php echo esc_html( $zone ) ?>
+	  	<?php } ?>
+	</li>
 	<li class="date-posted"><?php the_job_publish_date(); ?></li>
 </ul>
 
