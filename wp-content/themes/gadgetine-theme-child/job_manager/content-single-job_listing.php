@@ -2,10 +2,9 @@
 /**
  * Single job listing.
  *
- * This template can be overridden by copying it to yourtheme/job_manager/content-single-job_listing.php.
  *
  * @see         https://wpjobmanager.com/document/template-overrides/
- * @author      Automattic
+ * @author      fortuny josé
  * @package     WP Job Manager
  * @category    Template
  * @since       1.0.0
@@ -23,12 +22,6 @@ global $post;
 		<div class="job-manager-info"><?php _e( 'This listing has expired.', 'wp-job-manager' ); ?></div>
 	<?php else : ?>
 		<?php
-			/**
-			 * single_job_listing_start hook
-			 *
-			 * @hooked job_listing_meta_display - 20
-			 * @hooked job_listing_company_display - 30
-			 */
 			global $post;
 			$post_ID = get_the_ID();
 			$expertises = wp_get_post_terms( $post_ID, 'expertise', 'all' );
@@ -43,19 +36,13 @@ global $post;
 			$town= get_post_meta( $post->ID, 'geolocation_city', true ); 
 			$company_linkedin = get_post_meta( $post_ID, '_company_linkedin', true);
         	$company_facebook = get_post_meta( $post_ID, '_company_facebook', true);
+        	$company_twitter = get_the_company_twitter();
 
 			do_action( 'single_job_listing_meta_before' ); 
 		?>
-<ul class="job-listing-meta meta slug-search"">
-	<?php do_action( 'single_job_listing_meta_start' ); ?>
 
-	<?php if ( get_option( 'job_manager_enable_types' ) ) { ?>
-		<?php $types = wpjm_get_the_job_types(); ?>
-		<?php if ( ! empty( $types ) ) : foreach ( $types as $type ) : ?>
-			<li class="job-type <?php echo esc_attr( sanitize_title( $type->slug ) ); ?>"><?php echo esc_html( $type->name ); ?></li>
-		<?php endforeach; endif; ?>
-	<?php } ?>
-
+<ul class="job-listing-meta meta slug-search">
+	<li class="undertitle"><?php the_job_publish_date(); ?></li>
 	<li class="location">
 		<?php if ( $zip ) { ?>
 	    		<a class="google_map_link" href="http://maps.google.com/maps?q=<?php echo esc_html( $zip ) ?>&amp;zoom=14&amp;size=512x512&amp;maptype=roadmap&amp;sensor=false" target="_blank"><?php echo esc_html( $zip ) ?></a>
@@ -67,7 +54,29 @@ global $post;
 	    		<?php echo esc_html( $zone ) ?>
 	  	<?php } ?>
 	</li>
-	<li class="date-posted"><?php the_job_publish_date(); ?></li>
+</ul>
+
+<ul class="slug-search back">
+	<?php if ( $salary ) { ?>
+	<li class="inline"><strong>
+		<?php echo esc_html( $salary ) ?>
+		<?php if ( $salary!=='Non rémunéré' && $salary!=='A négocier')
+  		{ ?>
+  			€/an - </strong></li>
+  		<?php }
+    	else
+    	{ ?>
+	    	 - </strong></li>
+    	<?php } ?>
+	<?php } ?>
+	<?php do_action( 'single_job_listing_meta_start' ); ?>
+
+	<?php if ( get_option( 'job_manager_enable_types' ) ) { ?>
+		<?php $types = wpjm_get_the_job_types(); ?>
+		<?php if ( ! empty( $types ) ) : foreach ( $types as $type ) : ?>
+			<li class="inline"><strong><?php echo esc_html( $type->name ); ?> . </strong></li>
+		<?php endforeach; endif; ?>
+	<?php } ?>	
 </ul>
 
 <ul class="slug-search">
@@ -85,7 +94,7 @@ global $post;
     	foreach ($expertises as $expertise )
     	{
 			$expert = $expertise->name;
-			echo esc_html( $expert ); ?> <strong>/</strong>
+			echo esc_html( $expert ); ?> <strong>.</strong>
 		<?php } ?>
 			</li>
 	<?php } ?>
@@ -94,7 +103,8 @@ global $post;
 <ul class="slug-search">
 	<?php if ( $profil ) { ?>
     		<li><strong><?php echo __( 'Profil : ' ) ?></strong>
-    		<?php echo esc_html( $profil ) ?></li>
+    		<?php echo esc_html( $profil ) ?> <strong>.</strong>
+    	</li>
   	<?php } ?>
 </ul>  	
 
@@ -110,8 +120,7 @@ global $post;
     		<?php }	
 		  	foreach ($diags as $diag ) {
 		  		$diagnostique = $diag->name;
-		  		echo esc_html( $diagnostique ) ?>
-		  		<strong> / </strong>
+		  		echo esc_html( $diagnostique ) ?> <strong>.</strong>
 		  	<?php } ?>
 		  	</li>
    		<?php } ?>
@@ -129,27 +138,13 @@ global $post;
     		<?php }
     		foreach ($experiences as $experience ) {
 		  		$exp = $experience->name;
-		  		echo esc_html( $exp ) ?>
-		  		<strong> / </strong>
+		  		echo esc_html( $exp ) ?> <strong>.</strong>
 		  	<?php } ?>
 		  	</li>
 	<?php } ?>
 </ul>
 
-<ul class="slug-search">
-	<?php if ( $salary ) { ?>
-	<li><strong>Salaire: </strong>
-		<?php echo esc_html( $salary ) ?>
-		<?php if ( $salary!=='Non rémunéré' && $salary!=='A négocier')
-  		{ ?>
-  			€/an</li>
-  		<?php }
-    	else
-    	{ ?>
-	    	</li>
-    	<?php } ?>
-	<?php } ?>
-</ul>
+
 
 	<?php if ( is_position_filled() ) : ?>
 		<li class="position-filled"><?php _e( 'This position has been filled', 'wp-job-manager' ); ?></li>
@@ -167,16 +162,19 @@ global $post;
 			<?php the_company_logo(); ?>
 			<p class="name">
 				<?php if ( $website = get_the_company_website() ) : ?>
-					<a class="website" href="<?php echo esc_url( $website ); ?>" target="_blank" rel="nofollow"><?php _e( 'Website', 'wp-job-manager' ); ?></a>
+					<a href="<?php echo esc_url( $website ); ?>" target="_blank" rel="nofollow"><i class="fa ion-earth"></i></a>
 				<?php endif; ?>
-				<?php the_company_twitter(); ?>
+				<?php if ( $company_twitter )
+                { ?>    
+                    <a target="_blank" href="https://twitter.com/<?php echo esc_attr($company_twitter); ?>"><i class="fa fa-twitter"></i></a>                   
+                <?php } ?>
 				<?php if ( $company_linkedin )
                 { ?>    
-                    <a target="_blank" href="https://fr.linkedin.com/company/<?php echo esc_attr($company_linkedin); ?>"><i class="fa fa-linkedin"></i> Linkedin </a>                   
+                    <a target="_blank" href="https://fr.linkedin.com/company/<?php echo esc_attr($company_linkedin); ?>"><i class="fa fa-linkedin"></i></a>                   
                 <?php } ?>
                 <?php if ( $company_facebook )
                 { ?>
-                    <a target="_blank" href="https://fr-fr.facebook.com/<?php echo esc_attr($company_facebook); ?>"><i class="fa fa-facebook"></i> Facebook </a>                
+                    <a target="_blank" href="https://fr-fr.facebook.com/<?php echo esc_attr($company_facebook); ?>"><i class="fa fa-facebook"></i></a>                
                 <?php } ?>
 				<?php the_company_name( '<strong>', '</strong>' ); ?>
 			</p>

@@ -56,8 +56,7 @@ class add_fields
 		add_action( 'job_manager_job_submitted_content_after',array ($this, 'add_button_job_manager_job_submitted_content_after') );
 
 		add_filter( 'job_manager_job_filters_search_jobs_end',array ($this, 'add_reset_button_job_manager_job_filters_search_jobs_end') );
-
-		add_filter( 'submit_job_form_end',array ($this, 'add_script') );
+		
 	}
 
 	/**
@@ -124,7 +123,7 @@ class add_fields
 		<p id="1" class="default"><i class="icon ion-android-add-circle"></i> Champ d'Expertise
 			<ul class="job_types default"  id="10">
 			<?php foreach ($terms as $term ) : ?>
-				<li><label for="expertise_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"></label><input class="check" type="checkbox" name="filter_expertise[]" value="<?php echo $term->slug; ?>"  id="expertise_<?php echo $term->slug; ?>" /> <?php echo $term->name; ?></li>
+				<li><input class="check" type="checkbox" name="filter_expertise[]" value="<?php echo $term->slug; ?>"  id="expertise_<?php echo $term->slug; ?>" /><label for="expertise_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"> <?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
 			</ul>
 		</p>	
@@ -192,7 +191,7 @@ class add_fields
 		<p id="2"  class="default"><i class="icon ion-android-add-circle"></i> Profil 
 			<ul class="job_types default"  id="20">
 			<?php foreach ($terms as $term ) : ?>
-				<li><label for="profil_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"></label><input class="check" type="checkbox" name="filter_profil[]" value="<?php echo $term->slug; ?>"  id="profil_<?php echo $term->slug; ?>" /> <?php echo $term->name; ?></li>
+				<li><input class="check" type="checkbox" name="filter_profil[]" value="<?php echo $term->slug; ?>"  id="profil_<?php echo $term->slug; ?>" /><label for="profil_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
 			</ul>
 		</p>
@@ -251,7 +250,7 @@ class add_fields
 		<p id="3" class="default"><i class="icon ion-android-add-circle"></i> Diagnostic
 			<ul class="job_types default"  id="30">
 				<?php foreach ($terms as $term ) : ?>
-				<li><label for="diagnostic_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"></label><input class="check" type="checkbox" name="filter_diagnostic[]" value="<?php echo $term->slug; ?>"  id="diagnostic_<?php echo $term->slug; ?>" /> <?php echo $term->name; ?></li>
+				<li><input class="check" type="checkbox" name="filter_diagnostic[]" value="<?php echo $term->slug; ?>"  id="diagnostic_<?php echo $term->slug; ?>" /><label for="diagnostic_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
 			</ul>
 		</p>
@@ -313,7 +312,7 @@ class add_fields
 			<p  id="4" class="default"><i class="icon ion-android-add-circle"></i> Niveau d'expérience
 				<ul class="job_types default"  id="40">
 				<?php foreach ($terms as $term ) : ?>
-					<li><label for="experience_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><input class="check" type="checkbox" name="filter_experience[]" value="<?php echo $term->slug; ?>"  id="experience_<?php echo $term->slug; ?>" /> <?php echo $term->name; ?></label></li>
+					<li><input class="check" type="checkbox" name="filter_experience[]" value="<?php echo $term->slug; ?>"  id="experience_<?php echo $term->slug; ?>" /><label for="experience_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 				<?php endforeach; ?>		
 				</ul>
 			</p>
@@ -384,7 +383,7 @@ class add_fields
 		<p id="5" class="default"><i class="icon ion-android-add-circle"></i> Salaire 
 			<ul class="job_types default"  id="50">
 			<?php foreach ($terms as $term ) : ?>
-				<li><label for="salaire_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"></label><input class="check" type="checkbox" name="filter_salaire[]" value="<?php echo $term->slug; ?>"  id="salaire_<?php echo $term->slug; ?>" /> <?php echo $term->name; ?></li>
+				<li><input class="check" type="checkbox" name="filter_salaire[]" value="<?php echo $term->slug; ?>"  id="salaire_<?php echo $term->slug; ?>" /><label for="salaire_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
 			</ul>
 		</p>	
@@ -426,7 +425,7 @@ class add_fields
 		<p id="6" class="default"><i class="icon ion-android-add-circle"></i> Région 
 			<ul class="job_types default"  id="60">
 				<?php foreach ($zones as $region) {?>
-				<li><label for="zone_<?php echo $region ?>"></label><input name="filter_zone[]" value="<?php echo $region ?>" id="zone_<?php echo $region ?>"class="check" type="checkbox"> <?php echo $region ?></li>
+				<li><input name="filter_zone[]" value="<?php echo $region ?>" id="zone_<?php echo $region ?>"class="check" type="checkbox"><label for="zone_<?php echo $region ?>"><?php echo $region ?></label></li>
 				<?php } ?>
 			</ul>
 		</p>
@@ -551,7 +550,7 @@ class add_fields
 		$fields['company']['company_rh'] = array(
 			'label'       => __( 'Nom ', 'wp-job_manager' ),
 			'type'        => 'text',
-			'required'    => true,
+			'required'    => false,
 			'priority'    => 11
 	  	);
 		return $fields;
@@ -578,7 +577,7 @@ class add_fields
 		$fields['company']['company_prenomrh'] = array(
 			'label'       => __( 'Prenom ', 'wp-job_manager' ),
 			'type'        => 'text',
-			'required'    => true,
+			'required'    => false,
 			'priority'    => 12
 	  	);
 		return $fields;
@@ -605,7 +604,7 @@ class add_fields
 		$fields['company']['company_telrh'] = array(
 			'label'       => __( 'Téléphone ', 'wp-job_manager' ),
 			'type'        => 'text',
-			'required'    => true,
+			'required'    => false,
 			'priority'    => 13
 	  	);
 		return $fields;
@@ -632,7 +631,7 @@ class add_fields
 		$fields['company']['company_mailrh'] = array(
 			'label'       => __( 'Courriel ', 'wp-job_manager' ),
 			'type'        => 'text',
-			'required'    => true,
+			'required'    => false,
 			'priority'    => 14
 	  	);
 		return $fields;
@@ -680,129 +679,4 @@ class add_fields
 				</script>
 		<?php }		
 	}
-
-
-	public function add_script($fields){ ?>		
-		<script>
-			jQuery('#submit-job-form').hide();
-			jQuery(function($){				
-		    	$.when($.ready).then(function(e){
-		        	$("input[value='premium']").parent().append("<i class='icon ion-ios-information-outline'><div class='information'>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles,</div></i>");
-		        	$(".fieldset-company_rh").before("<h1 class='titre-meta'> Vos données de contact</h1><div class='choix'>(Ces informations sont uniquement destinées à nos services et elles ne seront pas communiquées aux candidats )</div><br />");
-		    	});
-			});
-
-			jQuery(function($){
-				$("input[value='premium']").parent().mouseenter(function(e){
-					$(".information").show();
-				});
-			});
-
-			jQuery(function($){
-			$("input[value='premium']").parent().mouseleave(function(e){
-					$(".information").hide();
-				});
-			});
-
-  			jQuery(function($){
-		    	$.when($.ready).then(function(e){
-		        	$('#diagnostic').parent().before("<br /><div class='choix'>( Plusieurs choix possible )</div>");
-		        	$('#expertise').parent().before("<br /><div class='choix'>( Plusieurs choix possible )</div>");
-		        	$('#experience').parent().before("<br /><div class='choix'>( Plusieurs choix possible )</div>");
-		    	});
-			});
-
-	  		jQuery(function($){
-  			   	$(document).ready(function(e){		    		
-	  				$('#expertise').trigger('chosen:open');
-	  				$('#diagnostic').trigger('chosen:open');
-	  				$('#experience').trigger('chosen:open');
-  					$('li.highlighted').trigger('mouseover');
-					$('#job_location+div').trigger('mousedown');
-					setTimeout(function($){
-							jQuery(document).scrollTop(0);
-						},500);
-	  			});
-	  			$(document).ready(function(e){		    		
-	  				setTimeout(function($){
-						jQuery('#submit-job-form').show();
-					},550);
-	  			});
-		    });
-	  		
-		</script>
-		<script>
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-      var placeSearch, autocomplete;
-      var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-      };
-
-      function initAutocomplete() {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types.
-        var options = {
-			types: ['(region)'],
-			componentRestrictions: {country: 'fr'}
-		};
-        autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('job_location')),
-            {types: ['(regions)'], componentRestrictions: {country: 'fr'} });
-
-        // When the user selects an address from the dropdown, populate the address
-        // fields in the form.
-        autocomplete.addListener('place_changed', fillInAddress);
-      }
-
-      function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-        for (var component in componentForm) {
-          document.getElementById(component).value = '';
-          document.getElementById(component).disabled = false;
-        }
-
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-          var addressType = place.address_components[i].types[0];
-          if (componentForm[addressType]) {
-            var val = place.address_components[i][componentForm[addressType]];
-            document.getElementById(addressType).value = val;
-          }
-        }
-      }
-
-      // Bias the autocomplete object to the user's geographical location,
-      // as supplied by the browser's 'navigator.geolocation' object.
-      function geolocate() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var geolocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            var circle = new google.maps.Circle({
-              center: geolocation,
-              radius: position.coords.accuracy
-            });
-            autocomplete.setBounds(circle.getBounds());
-          });
-        }
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAo_IFjU8w01LdnAH5i7v93u20Zti1Nek&libraries=places&callback=initAutocomplete"
-        async defer>
-    </script><?php 
-		return $fields;
-	}
-
 }

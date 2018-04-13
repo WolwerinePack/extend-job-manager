@@ -16,6 +16,7 @@ use app\send_emails;
 use app\custom_script;
 use app\set_cookies;
 use app\find_zone;
+use app\script_jquery;
 
 new edit_fields();
 new add_fields();
@@ -24,3 +25,4 @@ new send_emails();
 new custom_script();
 new set_cookies();
 new find_zone();
+new script_jquery();

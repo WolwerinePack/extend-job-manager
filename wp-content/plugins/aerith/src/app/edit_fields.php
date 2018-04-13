@@ -84,7 +84,7 @@ class edit_fields
 	public function custom_job_location_submit_job_form_fields( $fields ) {
 	    $fields['job']['job_location']['label'] = "Code postal";
 	    $fields['job']['job_location']['required'] = "true";
-	    $fields['job']['job_location']['placeholder'] = "Par exemple : 13590";
+	    $fields['job']['job_location']['placeholder'] = "Par exemple : 13590 ou bien : Meyreuil";
 	    $fields['job']['job_location']['description'] = "";
 	    return $fields;
 	}
@@ -271,7 +271,6 @@ class edit_fields
 			 ORDER BY p.post_title"
 		);
 		$_companies = array();
-
 		foreach ( $companies as $company ) {
 			$_companies[ strtoupper( $company[0] ) ][] = $company;
 		}
@@ -296,9 +295,8 @@ class edit_fields
 			$output .= '<ul>';
 
 			foreach ( $_companies[ $letter ] as $company_name ) {
-				$count = count( get_posts( array( 'post_type' => 'job_listing', 'meta_key' => '_company_name', 'meta_value' => $company_name, 'nopaging' => true ) ) );
-
-				$output .= '<li class="company-name"><a href="' . site_url().'/'. $company_name  . '">' . esc_attr( $company_name ) . ' (' . $count . ')</a></li>';
+				
+				$output .= '<li class="company-name"><a href="' . site_url().'/'. $company_name  . '">' . esc_attr( $company_name ) . '</a></li>';
 			}
 
 			$output .= '</ul>';

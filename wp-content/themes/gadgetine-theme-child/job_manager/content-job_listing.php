@@ -22,13 +22,13 @@ $salaries = wp_get_post_terms( $post_ID, 'salaire', 'all' );
 $salary = $salaries[0]->name;
 $zip = get_post_meta( $post_ID, 'geolocation_postcode', true );
 $town= get_post_meta( $post_ID, 'geolocation_city', true );
-get_post_meta( $post->ID, 'geolocation_state_long', true );
 $types = wpjm_get_the_job_types();
 $profil = get_post_meta( $post->ID, '_job_profil', true );
+$premium = get_post_meta( $post->ID, '_featured', true );
 ?>
 <li <?php job_listing_class(); ?> data-longitude="<?php echo esc_attr( $post->geolocation_lat ); ?>" data-latitude="<?php echo esc_attr( $post->geolocation_long ); ?>">
 	<a href="<?php the_job_permalink(); ?>">
-		<?php the_company_logo(); ?>
+		<?php if($premium==='1'){the_company_logo();} ?>
 		<div class="position">
 			<h3 class="slug-search"><?php wpjm_the_job_title(); ?></h3>
 			<div class="company slug-search">

@@ -46,6 +46,20 @@
                             <div class="article-header-info">
                                 <span class="article-header-meta">
                                     <span class="article-header-meta-date"><h1 style="color: #3F484F"><?php echo $company_name ?></h1></span>
+                                        <h1 class="titredroit titre-meta">
+                                            <?php if ( $website = get_the_company_website() ) : ?>
+                                                <a href="<?php echo esc_url( $website ); ?>" target="_blank" rel="nofollow"><i class="fa ion-earth"></i></a>
+                                            <?php endif; ?>
+                                            <?php if ( $company_twitter ) { ?>    
+                                                <a target="_blank" href="https://twitter.com/<?php echo esc_attr($company_twitter); ?>"><i class="fa fa-twitter"></i></a>                   
+                                            <?php } ?>
+                                            <?php if ( $company_linkedin ) { ?>    
+                                                <a target="_blank" href="https://fr.linkedin.com/company/<?php echo esc_attr($company_linkedin); ?>"><i class="fa fa-linkedin"></i></a>                   
+                                            <?php } ?>
+                                            <?php if ( $company_facebook ) { ?>
+                                                <a target="_blank" href="https://fr-fr.facebook.com/<?php echo esc_attr($company_facebook); ?>"><i class="fa fa-facebook"></i></a>                
+                                            <?php } ?>
+                                        </h1>
                                 </span>
                             </div>
                         </div>
@@ -56,40 +70,9 @@
                                     <h1><?php echo $page ?></h1>
                                     <div class="page-header-meta">
                                         <ul class="job-meta">
-                                                <div class="pure-g">
-                                                    <?php
-                                                    if ( ! empty($company_website) ) 
-                                                    { ?>
-                                                        <div class="pure-u-8-24">
-                                                            <a href="<?php echo esc_url(get_the_company_website()); ?>" target="_blank"><i class="icon ion-link"></i> <?php esc_html_e( 'Site Web', 'gadgetine-theme' ); ?></a>
-                                                        </div>                                                            
-                                                    <?php
-                                                    } ?>                                                       
-                                                </div>
-                                                <div class="pure-g">                                                       
-                                                    <?php if ( $company_twitter )
-                                                    { ?>
-                                                        <div class="pure-u-8-24">
-                                                            <a target="_blank" href="http://twitter.com/<?php echo esc_attr($company_twitter); ?>"><i class="fa fa-twitter"></i> Twitter </a>
-                                                        </div>
-                                                    <?php
-                                                    } ?> 
-                                                    <?php if ( $company_linkedin )
-                                                    { ?>
-                                                        <div class="pure-u-8-24">
-                                                            <a target="_blank" href="https://fr.linkedin.com/company/<?php echo esc_attr($company_linkedin); ?>"><i class="fa fa-linkedin"></i> Linkedin </a>
-                                                        </div>
-                                                    <?php
-                                                    } ?>
-                                                    <?php if ( $company_facebook )
-                                                    { ?>
-                                                        <div class="pure-u-8-24">
-                                                            <a target="_blank" href="https://fr-fr.facebook.com/<?php echo esc_attr($company_facebook); ?>"><i class="fa fa-facebook"></i> Facebook </a>
-                                                        </div>
-                                                    <?php
-                                                    } ?>                                                        
-                                                </div>
-                                        </ul>
+                                                <div class="company">
+                                                    
+                                                </div>                                                            
                                         <ul >
                                             <?php if ($company_tagline ) : ?>
                                                 <h1 class="titre-meta">Description de la société</h1>

@@ -44,114 +44,74 @@
                             <?php 
                                 if ( is_plugin_active('wp-job-manager/wp-job-manager.php') && class_exists( 'Astoundify_Job_Manager_Companies' ) ) 
                                 { ?>
-                                    <div class="page-header-meta">
-                                        <ul class="job-meta">
-                                            <div class="pure-g">
-                                                <?php
-                                                if ( ! empty($company_website) ) 
-                                                { ?>
-                                                    <div class="pure-u-8-24">
-                                                        <a href="<?php echo esc_url(get_the_company_website()); ?>" target="_blank"><i class="icon ion-link"></i> <?php esc_html_e( 'Site Web', 'gadgetine-theme' ); ?></a>
-                                                    </div>                                                            
-                                                <?php
-                                                } ?>                                                       
-                                            </div>
-                                            <div class="pure-g">                                                       
-                                                <?php if ( $company_twitter )
-                                                { ?>
-                                                    <div class="pure-u-8-24">
-                                                        <a target="_blank" href="http://twitter.com/<?php echo esc_attr($company_twitter); ?>"><i class="fa fa-twitter"></i> Twitter </a>
-                                                    </div>
-                                                <?php
-                                                } ?> 
-                                                <?php if ( $company_linkedin )
-                                                { ?>
-                                                    <div class="pure-u-8-24">
-                                                        <a target="_blank" href="https://fr.linkedin.com/company/<?php echo esc_attr($company_linkedin); ?>"><i class="fa fa-linkedin"></i> Linkedin </a>
-                                                    </div>
-                                                <?php
-                                                } ?>
-                                                <?php if ( $company_facebook )
-                                                { ?>
-                                                    <div class="pure-u-8-24">
-                                                        <a target="_blank" href="https://fr-fr.facebook.com/<?php echo esc_attr($company_facebook); ?>"><i class="fa fa-facebook"></i> Facebook </a>
-                                                    </div>
-                                                <?php
-                                                } ?>                                                        
-                                            </div>
-                                        </ul>
-                                        <ul >
-                                            <?php if ($company_tagline ) : ?>
-                                                <h1 class="titre-meta">Description de la société</h1>
-                                                <li class="tagline">
-                                                    <div><p class="company-single pure-u-24-24"><?php echo $company_tagline; ?></p></div>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if ( $company_why ) { ?>
-                                            <h1 class="titre-meta">Pourquoi travailler pour nous ?</h1>
-                                                <li class="why">
-                                                    <div><p class="company-single pure-u-24-24"><?php echo $company_why; ?></p></div>
-                                                </li>
-                                            <?php } ?>
-                                            <?php if ( $company_number ) { ?>
-                                            <h1 class="titre-meta">Nombres de postes a pourvoir cette année et dans quelle région</h1>
-                                                <li class="number">
-                                                    <div><p class="company-single pure-u-24-24"><?php echo $company_number; ?></p></div>
-                                                </li>
-                                            <?php } ?>
-                                            <?php if ( $company_profil ) { ?>
-                                            <h1 class="titre-meta">Type de profil que nous recherchons</h1>
-                                                <li class="profil">
-                                                    <div><p class="company-single pure-u-24-24"><?php echo $company_profil; ?></p></div>
-                                                </li>
-                                            <?php } ?>
+                                    <ul >
+                                        <?php if ($company_tagline ) : ?>
+                                            <h1 class="titre-meta">Description de la société</h1>
+                                            <li class="tagline">
+                                                <div><p class="company-single pure-u-24-24"><?php echo $company_tagline; ?></p></div>
+                                            </li>
+                                        <?php endif; ?>
+                                        <?php if ( $company_why ) { ?>
+                                        <h1 class="titre-meta">Pourquoi travailler pour nous ?</h1>
+                                            <li class="why">
+                                                <div><p class="company-single pure-u-24-24"><?php echo $company_why; ?></p></div>
+                                            </li>
+                                        <?php } ?>
+                                        <?php if ( $company_number ) { ?>
+                                        <h1 class="titre-meta">Nombres de postes a pourvoir cette année et dans quelle région</h1>
+                                            <li class="number">
+                                                <div><p class="company-single pure-u-24-24"><?php echo $company_number; ?></p></div>
+                                            </li>
+                                        <?php } ?>
+                                        <?php if ( $company_profil ) { ?>
+                                        <h1 class="titre-meta">Type de profil que nous recherchons</h1>
+                                            <li class="profil">
+                                                <div><p class="company-single pure-u-24-24"><?php echo $company_profil; ?></p></div>
+                                            </li>
+                                        <?php } ?>
+                                        <?php
+                                            $post_thumbnail_id = get_post_thumbnail_id($post->ID);
+                                            $attachment = get_post_meta($post_thumbnail_id);
+                                            $featured_image = wp_get_attachment_image_src($post_thumbnail_id , 'full');
+                                        ?>
+                                        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                                             <?php
-                                                //global $post;
-                                                $post_thumbnail_id = get_post_thumbnail_id($post->ID);
-                                                $attachment = get_post_meta($post_thumbnail_id);
-                                                $featured_image = wp_get_attachment_image_src($post_thumbnail_id , 'full');
-                                            ?>
-                                            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                                            if (! is_attachment()) : //do not show any of these in attachment page
+                                                if (has_post_format('gallery'))
+                                                {
+                                                        $image_url = get_post_gallery_images($post);
+                                                        $post_thumbnail_id = get_post_thumbnail_id($post->ID);
+                                                        $attachment =  get_post($post_thumbnail_id);
+                                                ?>                                                                       
+                                                        <div class="pure-u-8-24"> 
+                                                            <?php foreach( $image_url as $image ) { ?>
+                                                                <img src="<?php echo esc_url($image); ?>">
+                                                            <?php } ?>
+                                                        </div>
+                                                <?php 
+                                                }
+                                                else if (! has_post_format('video')) 
+                                                { ?>
+                                                    <?php if ( $featured_image ) : ?>
+                                                        <div class="pure-u-8-24">
+                                                            <img src="<?php echo esc_url($featured_image[0]); ?>">
+                                                        </div>
+                                                    <?php endif; ?>
                                                 <?php
-                                                if (! is_attachment()) : //do not show any of these in attachment page
-                                                    if (has_post_format('gallery'))
-                                                    {
-                                                            $image_url = get_post_gallery_images($post);
-                                                            $post_thumbnail_id = get_post_thumbnail_id($post->ID);
-                                                            $attachment =  get_post($post_thumbnail_id);
-                                                    ?>                                                                       
-                                                            <div class="pure-u-8-24"> 
-                                                                <?php foreach( $image_url as $image ) { ?>
-                                                                    <img src="<?php echo esc_url($image); ?>">
-                                                                <?php } ?>
-                                                            </div>
-                                                    <?php 
-                                                    }
-                                                    else if (! has_post_format('video')) 
-                                                    { ?>
-                                                        <?php if ( $featured_image ) : ?>
-                                                            <div class="pure-u-8-24">
-                                                                <img src="<?php echo esc_url($featured_image[0]); ?>">
-                                                            </div>
-                                                        <?php endif; ?>
-                                                    <?php
-                                                    }
-                                                endif; ?>
-                                                <br /><br />
-                                                <?php the_company_video();?>
-                                            </article>
-                                        </ul>
-                                    </div>
-                                <?php } else { echo '<h1>'; the_title(); echo '</h1>';} ?>  
-                                </div>
-                                </div>
-                            </div>                                      
+                                                }
+                                            endif; ?>
+                                            <br /><br />
+                                            <?php the_company_video();?>
+                                        </article>
+                                    </ul>
+                            <?php } 
+                                else { echo '<h1>'; the_title(); echo '</h1>';} ?>                                      
                         </div>
                     </div>
                 </div>
             </div>
             <aside id="sidebar">
-                    <?php  dynamic_sidebar('sidebar-jobs'); ?>
+                <?php  dynamic_sidebar('sidebar-jobs'); ?>
             </aside>
         </div>        
     </div>

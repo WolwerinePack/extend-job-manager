@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<aside id="sidebar">
-                    <?php  dynamic_sidebar('sidebar-jobs'); ?>
+                <?php  dynamic_sidebar('sidebar-jobs'); ?>
             </aside>
 		</div>
 	</div>

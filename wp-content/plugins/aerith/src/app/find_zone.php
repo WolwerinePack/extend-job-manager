@@ -17,7 +17,7 @@ class find_zone
 	{
 		global $wpdb;
 		$region=array();
-		$resultats=$wpdb->get_results("SELECT * FROM itga_postmeta WHERE meta_key LIKE 'geolocation_state_long' GROUP BY meta_value ORDER BY meta_value ASC ");
+		$resultats=$wpdb->get_results("SELECT * FROM itga_postmeta LEFT JOIN itga_posts ON ID = post_id WHERE meta_key LIKE 'geolocation_state_long' AND post_status LIKe 'publish' GROUP BY meta_value ORDER BY meta_value ASC ");
 		foreach ($resultats as $resultat) {
 			$region[]=$resultat->meta_value;
 		}

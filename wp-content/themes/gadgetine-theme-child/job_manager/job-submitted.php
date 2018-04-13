@@ -24,7 +24,7 @@ switch ( $job->post_status ) :
 	$post = get_post($job->ID);
 		$link = site_url().'/wp-admin/post.php?post='.$post->ID.'&action=edit';
 		$headers = array('Content-Type: text/html; charset=UTF-8');
-		$foot = site_url()."/wp-content/uploads/2018/03/LOGO-DIMAG-JOB.png";
+		$foot = site_url()."/wp-content/uploads/2018/04/Footer.jpg";
 		if( get_post_meta( $job->ID, '_premium', true) === 'premium' )
 		{
 			/**
@@ -44,7 +44,7 @@ switch ( $job->post_status ) :
 			Rendez-vous sur le lien suivant pour consulter les détails de la demande client : ".$link."<br />
 			Par la suite, merci de bien vouloir lui renvoyer une proposition commerciale dans les 24 heures ouvrées.<br />
 			<img src='".$foot."'>";
-			$team="Jamila.Barka@itga.fr";
+			$team="jose.fortuny@itga.fr";
 			wp_mail($team, "Une nouvelle offre d’emploi PREMIUM / Contact à appeler  ", $message, $headers);			
 		}
 		else
@@ -58,7 +58,7 @@ switch ( $job->post_status ) :
 			<br />
 			Merci.<br />
 			<img src='".$foot."'>";
-			$team="Jamila.Barka@itga.fr";
+			$team="jose.fortuny@itga.fr";
 			wp_mail($team, "Une nouvelle offre d’emploi standard en attente de modération", $message, $headers);
 		}
 	break;

@@ -15,6 +15,18 @@
 {
   margin-top: 7%!important;
 }
+.article-header-info{
+  border-top:unset!important;
+}
+.entry-title
+{
+  margin-bottom: 0px!important;
+}
+li.undertitle > time{
+  margin-bottom: 20%!important;
+  font-weight: 100!important; 
+  font-style: italic;  
+}
 .information
 {
   position: absolute;
@@ -51,7 +63,6 @@ li
 	list-style: none;
     list-style-type: none;
 }
-
 table 
 {
   width: 100%;
@@ -123,24 +134,70 @@ li.tagline, li.why, li.number, li.profil
 .job-page-wrap .entry-featured-video {
   margin-bottom: 30px; 
 }
-
+.fieldset-company_rh.rh,
+.fieldset-company_prenomrh.rh,
+.fieldset-company_telrh.rh{
+  margin-bottom: unset!important;
+}
+.rh
+{
+  background-color: #F7F8F8;
+  display: none;
+  
+  border-bottom:unset!important;
+  padding: 0px 4px 4px 4px!important;
+}
 iframe
 {
   max-width: 766px !important;
 }
+label{
+  margin-left: 4px!important;
+  float: unset !important;
+  font-family: unset!important;
+  font-weight: unset!important;  
+}
+fieldset.fieldset-premium  label:first-child,
+fieldset.fieldset-job_type  label,
+fieldset.fieldset-profil  label,
+fieldset.fieldset-salaire  label
+{
+  float:left!important;  
+}
+fieldset.fieldset-premium  label:first-of-type{
+  width:30%!important;  
+}
+fieldset.fieldset-premium  label{
+  width: 20%!important;
+}
 
+fieldset.fieldset-premium  label{
+  width: 20%!important;
+}
 .check {
   width: initial!important;
+  cursor: pointer;
 }
 .slug-search
 {
-  max-height: 85px;
+  max-height: 89px;
   overflow-y: hidden;
   color:#3F484F!important;
   width: auto;
   line-height: initial!important;
   font-size: 14px!important;
 }
+  .back
+  {
+    background-color: #F1F1F1 ; 
+    color:#3BBAD2!important;
+    font-size: 18px!important;    
+  }
+  .inline{
+    display: table-cell;
+    padding: 4px 0px 4px 4px!important;
+  }
+
 .type
 {
   font-weight: 700;
@@ -239,6 +296,12 @@ h3.slug-search
   .single_job_listing .meta .internship {
     background-color: unset!important; }
 
+.company,
+.company_video{
+  border: unset!important;
+
+}
+
 .company-single
 {
   height: auto;
@@ -258,12 +321,12 @@ h3.slug-search
     float: left;
     margin-bottom: 7px;
     margin-left: -1px;
-    padding: 8px 16px;
+    padding: 5.5px 11px;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     text-align: center;
     text-decoration: none;
-    border: 1px solid #e2e2e2;
+    border: unset!important;
     background-color: #fff;
     line-height: 1.4; 
   }
@@ -272,10 +335,13 @@ h3.slug-search
       color: #fff;
       background: #3ebef1; 
     }
-
+.titredroit{
+  color: #3F484F!important;
+  float: right;
+}
 .companies-overview 
 {
-	padding-left: 0;
+	padding-left: 0px!important;
   width: 100% !important; 
 }
   .companies-overview ul 
@@ -295,7 +361,7 @@ h3.slug-search
 .companies-overview .company-group 
 {
   margin: 0 1% 20px 0;
-  width: 40%;
+  width: 48%;
   border: 1px solid #e2e2e2;
   float: left; 
 }
@@ -325,6 +391,7 @@ li.menu-item:first-child >a {
 {
   display: none;
 }
+.ion-earth:before,
 .ion-android-remove-circle:before,
 .ion-ios-information-outline:before,
 .ion-android-add-circle:before,
@@ -352,9 +419,10 @@ li.menu-item:first-child >a {
 button i.ion-android-remove-circle:before {
   color: #ED902A;
   font-size: 24px;
-  margin-top: -1.5%;
+  margin-top: -1%;
   margin-left: 2%;
-  content: "\f3a9"; }
+  content: "\f3a9"; 
+}
   p > i.ion-android-remove-circle:before {
     content: "\f3a9";
     color: #ED902A;
@@ -363,13 +431,17 @@ button i.ion-android-remove-circle:before {
 button i.ion-android-add-circle:before {
   color: #ED902A;
   font-size: 24px;
-  margin-top: -1.5%;
+  margin-top: -1%;
   margin-left: 2%;
   content: ""; }
   p > i.ion-android-add-circle:before {
     content: "";
     color: #ED902A;
   }
+
+.ion-earth:before{
+content: " \f276";
+}
 
 .ion-ios-information-outline:before{
   content: "\f44c";
@@ -405,6 +477,10 @@ button i.ion-android-add-circle:before {
 {
   content: ""; 
 }
+
+.shortocde-content ol, .shortocde-content ul{
+  padding-left: unset!important;
+}
 .rp4wp-related-job_listing > ul li.job_listing.job_position_featured a,
  .rp4wp-related-job_listing > ul li.no_job_listings_found.job_position_featured a,
   ul.job_listings li.job_listing.job_position_featured a,
@@ -435,7 +511,7 @@ button i.ion-android-add-circle:before {
 }
 .widget ul.job_listings li.job_listing a ul.meta li.job-type
 {
-  padding :unset;
+  padding :unset!important;
 }
 .widget ul.job_listings li.job_listing .position 
 {
