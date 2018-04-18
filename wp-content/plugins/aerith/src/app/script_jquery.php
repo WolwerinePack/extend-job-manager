@@ -24,7 +24,7 @@ class script_jquery
 		    	$.when($.ready).then(function(e){
 		        	$("input[value='premium']").parent().append("<i class='icon ion-ios-information-outline'></i><div class='information'>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles,</div>");
 
-		        	$(".fieldset-company_rh").before("<div class='rh'><h1 class='titre-meta'> Vos données de contact</h1><div class='choix'>(Ces informations sont uniquement destinées à nos services et elles ne seront pas communiquées aux candidats )</div><br /></div>");
+		        	$(".fieldset-company_rh").before("<div class='rh'><h1 class='titre-meta'> Vos données de contact</h1><div class='choix'>(Ces informations sont uniquement destinées à nos services pour le traitement de votre demande. Elles ne seront pas communiquées aux candidats )</div><br /></div>");
 		        	
 		    	});
 			});
@@ -39,7 +39,7 @@ class script_jquery
 					$(".rh").slideDown();
 					$("#company_rh, #company_prenomrh, #company_telrh, #company_mailrh").attr('required',' ');
 					$(".fieldset-company_rh > div, .fieldset-company_prenomrh > div, .fieldset-company_telrh > div, .fieldset-company_mailrh > div").addClass('required-field');
-					$('small').hide();
+					$('.fieldset-company_rh > label > small, .fieldset-company_prenomrh > label > small, .fieldset-company_telrh > label > small, .fieldset-company_mailrh > label > small ').hide();
 				});
 			});
 			/**
@@ -52,7 +52,7 @@ class script_jquery
 					$(".rh").slideUp();
 					$("#company_rh, #company_prenomrh, #company_telrh, #company_mailrh").removeAttr('required',' ');
 					$(".fieldset-company_rh > div, .fieldset-company_prenomrh > div, .fieldset-company_telrh > div, .fieldset-company_mailrh > div").removeClass('required-field');
-					$('small').show();
+					$('.fieldset-company_rh > label > small, .fieldset-company_prenomrh > label > small, .fieldset-company_telrh > label > small, .fieldset-company_mailrh > label > small ').show();
 				});
 			});
 

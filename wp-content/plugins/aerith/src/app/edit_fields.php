@@ -271,8 +271,9 @@ class edit_fields
 			 ORDER BY p.post_title"
 		);
 		$_companies = array();
+		$_companieslogo = array();
 		foreach ( $companies as $company ) {
-			$_companies[ strtoupper( $company[0] ) ][] = $company;
+			$_companies[ strtoupper( $company[0] ) ][] = $company;						
 		}
 
 		if ( $atts[ 'show_letters' ] ) {
@@ -291,12 +292,19 @@ class edit_fields
 			if ( ! isset( $_companies[ $letter ] ) )
 				continue;
 
-			$output .= '<li class="company-group"><div id="' . $letter . '" class="company-letter">' . $letter . '</div>';
-			$output .= '<ul>';
+			$output .= '<li class="company-group-modif"><div id="' . $letter . '" class="company-letter-modif">' . $letter . '</div>';
+			$output .= '<ul class="companies-overview">';
 
 			foreach ( $_companies[ $letter ] as $company_name ) {
-				
-				$output .= '<li class="company-name"><a href="' . site_url().'/'. $company_name  . '">' . esc_attr( $company_name ) . '</a></li>';
+				$companieid=$wpdb->get_col(
+					"SELECT p.ID FROM {$wpdb->posts} p 
+					 WHERE p.post_title = '$company_name' 
+					 AND p.post_type='post'");
+				$companielogo =	$wpdb->get_col(
+					"SELECT p.guid FROM {$wpdb->posts} p 
+					 WHERE p.post_parent = '$companieid[0]'
+					 AND p.post_type = 'attachment'");
+				$output .= '<li class="company-group"><div class="company-letter"><img src="'.$companielogo[0].'"></div><div class="conteneurglobal"><p>' . esc_attr( $company_name ) . '</p><a href="' . site_url().'/'. $company_name  . '">en savoir plus</a></div></li>';
 			}
 
 			$output .= '</ul>';

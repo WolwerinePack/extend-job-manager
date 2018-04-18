@@ -10,7 +10,11 @@
 	global $post;
     $post_ID = get_the_ID();
 	$company_name = get_post_meta( $post_ID, '_company_name', true);
-	$company_url =home_url( '/entreprise/' . trailingslashit( $company_name ) );
+	/*$company_url =home_url( '/entreprise/' . trailingslashit( $company_name ) );*/
+	if ( class_exists( 'Astoundify_Job_Manager_Companies' ) && '' != get_the_company_name() ) :
+        $companies   = Astoundify_Job_Manager_Companies::instance();
+        $company_url = esc_url( $companies->company_url( $company_name ) );
+    endif;
 ?>
 <section class="content">
     <div class="wrapper">

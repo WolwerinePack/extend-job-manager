@@ -8,18 +8,24 @@
  */
     get_header();   
 
-    $post_ID = get_the_ID();    
+    $post_ID = get_the_ID();  
     if(isset($_SESSION['high_id']) && $_SESSION['high_id']>$post_ID)
     {
-        $post_ID = $_SESSION['high_id'];
-    }
-    else
-    {   
-        $_SESSION['high_id']=$post_ID;
-    }
+        $company_name_id_test = get_post_meta( $post_ID, '_company_name', true);
+        $company_name_session_test = get_post_meta( $_SESSION['high_id'], '_company_name', true); 
+        if($company_name_id_test===$company_name_session_test)
+        {
+            $post_ID = $_SESSION['high_id'];
+        }
+        else
+        {   
+            $_SESSION['high_id']=$post_ID;
+        }
+    }    
 
     if ( is_plugin_active('wp-job-manager/wp-job-manager.php') && class_exists( 'Astoundify_Job_Manager_Companies' )) 
     {
+
         $company_website = get_post_meta( $post_ID, '_company_website', true);
         $company_name = get_post_meta( $post_ID, '_company_name', true);
         $company_tagline = wp_unslash(get_post_meta( $post_ID, '_company_tagline', true));

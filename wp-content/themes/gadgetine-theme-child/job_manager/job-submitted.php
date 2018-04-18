@@ -34,9 +34,13 @@ switch ( $job->post_status ) :
 			$prenom = get_post_meta( $job->ID, '_company_prenomrh', true);
 			$tel = get_post_meta( $job->ID, '_company_telrh', true);
 			$mail = get_post_meta( $job->ID, '_company_mailrh', true);
+			$company=get_post_meta( $job->ID, '_company_name', true);
+			$location=get_post_meta( $job->ID, '_job_location', true);
 			printf('<br /><h2>Vous avez choisi l\'offre Premium pour votre annonce.<br />Notre service commercial vous recontactera sous 24h pour finaliser votre demande.</h2>');
 			$message = "Bonjour,<br />
 			Une nouvelle offre d’emploi  PREMIUM a été déposée. <br />
+			Entreprise : ".$company."<br />
+			Emplacement : ".$location."<br />
 			Nom : ".$nom."<br />
 			Prénom : ".$prenom."<br />
 			Téléphone : ".$tel."<br />

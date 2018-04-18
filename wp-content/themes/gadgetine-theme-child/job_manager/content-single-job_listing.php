@@ -74,7 +74,7 @@ global $post;
 	<?php if ( get_option( 'job_manager_enable_types' ) ) { ?>
 		<?php $types = wpjm_get_the_job_types(); ?>
 		<?php if ( ! empty( $types ) ) : foreach ( $types as $type ) : ?>
-			<li class="inline"><strong><?php echo esc_html( $type->name ); ?> . </strong></li>
+			<li class="inline"><strong><?php echo esc_html( $type->name ); ?></strong></li>
 		<?php endforeach; endif; ?>
 	<?php } ?>	
 </ul>
@@ -93,9 +93,9 @@ global $post;
 
     	foreach ($expertises as $expertise )
     	{
-			$expert = $expertise->name;
-			echo esc_html( $expert ); ?> <strong>.</strong>
-		<?php } ?>
+			$expert .= esc_html($expertise->name)."<strong> . </strong>";
+		}	
+			echo rtrim($expert ,'<strong> . </strong>');?>
 			</li>
 	<?php } ?>
 </ul>
@@ -103,7 +103,7 @@ global $post;
 <ul class="slug-search">
 	<?php if ( $profil ) { ?>
     		<li><strong><?php echo __( 'Profil : ' ) ?></strong>
-    		<?php echo esc_html( $profil ) ?> <strong>.</strong>
+    		<?php echo esc_html( $profil ) ?>
     	</li>
   	<?php } ?>
 </ul>  	
@@ -118,10 +118,11 @@ global $post;
     		{ ?>
 	    		<li> <strong>Type de diagnostic : </strong>
     		<?php }	
-		  	foreach ($diags as $diag ) {
-		  		$diagnostique = $diag->name;
-		  		echo esc_html( $diagnostique ) ?> <strong>.</strong>
-		  	<?php } ?>
+		  	foreach ($diags as $diag ) 
+		  	{
+		  		$diagnostique .= esc_html($diag->name)."<strong> . </strong>";
+		  	}
+		  		echo rtrim( $diagnostique ,'<strong> . </strong>'); ?>
 		  	</li>
    		<?php } ?>
 </ul>  	
@@ -136,10 +137,11 @@ global $post;
     		{ ?>
 	    		<li> <strong>Niveau d'experience : </strong>
     		<?php }
-    		foreach ($experiences as $experience ) {
-		  		$exp = $experience->name;
-		  		echo esc_html( $exp ) ?> <strong>.</strong>
-		  	<?php } ?>
+    		foreach ($experiences as $experience ) 
+    		{
+		  		$exp .= esc_html($experience->name)."<strong> . </strong>";
+		  	}
+		  		echo rtrim( $exp ,'<strong> . </strong>'); ?>
 		  	</li>
 	<?php } ?>
 </ul>

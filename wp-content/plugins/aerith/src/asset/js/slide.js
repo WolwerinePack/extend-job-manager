@@ -1,15 +1,16 @@
 	jQuery.noConflict();
-    jQuery(document).ready(function() {
+    jQuery('#60').slideUp();
+    jQuery(document).ready(function() {        
 		jQuery("#1").click(function(){
             if(jQuery("#10").is(":visible"))
             {
                 jQuery("#1 > i").attr('class', 'ion-android-add-circle');
-                jQuery('#10').slideUp();
+                jQuery('#10').hide();
             }
             else
             {
                 jQuery("#1 > i").attr('class', 'ion-android-remove-circle');
-                jQuery('#10').slideDown('slow');
+                jQuery('#10').show();
             }
 
         });
@@ -17,12 +18,12 @@
             if(jQuery("#20").is(":visible"))
             {
                 jQuery("#2 > i").attr('class', 'ion-android-add-circle');
-                jQuery('#20').slideUp();
+                jQuery('#20').hide();
             }
             else
             {
                 jQuery("#2 > i").attr('class', 'ion-android-remove-circle');
-                jQuery('#20').slideDown('slow');
+                jQuery('#20').show();
             }
 
         });
@@ -30,12 +31,12 @@
             if(jQuery("#30").is(":visible"))
             {
                 jQuery("#3 > i").attr('class', 'ion-android-add-circle');
-                jQuery('#30').slideUp();
+                jQuery('#30').hide();
             }
             else
             {
                 jQuery("#3 > i").attr('class', 'ion-android-remove-circle');
-                jQuery('#30').slideDown('slow');
+                jQuery('#30').show();
             }
 
         });
@@ -43,12 +44,12 @@
             if(jQuery("#40").is(":visible"))
             {
                 jQuery("#4 > i").attr('class', 'ion-android-add-circle');
-                jQuery('#40').slideUp();
+                jQuery('#40').hide();
             }
             else
             {
                 jQuery("#4 > i").attr('class', 'ion-android-remove-circle');
-                jQuery('#40').slideDown('slow');
+                jQuery('#40').show();
             }
 
         });
@@ -56,12 +57,12 @@
             if(jQuery("#50").is(":visible"))
             {
                 jQuery("#5 > i").attr('class', 'ion-android-add-circle');
-                jQuery('#50').slideUp();
+                jQuery('#50').hide();
             }
             else
             {
                 jQuery("#5 > i").attr('class', 'ion-android-remove-circle');
-                jQuery('#50').slideDown('slow');
+                jQuery('#50').show();
             }
 
         });
@@ -69,12 +70,12 @@
             if(jQuery("#60").is(":visible"))
             {
                 jQuery("#6 > i").attr('class', 'ion-android-add-circle');
-                jQuery('#60').slideUp();
+                jQuery('#60').hide();
             }
             else
             {
                 jQuery("#6 > i").attr('class', 'ion-android-remove-circle');
-                jQuery('#60').slideDown('slow');
+                jQuery('#60').show();
             }
 
         });

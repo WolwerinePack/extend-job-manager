@@ -121,7 +121,7 @@ class add_fields
             'hide_empty' => false,  ) ); 
         ?>
 		<p id="1" class="default"><i class="icon ion-android-add-circle"></i> Champ d'Expertise
-			<ul class="job_types default"  id="10">
+			<ul class="job_types default colonne"  id="10">
 			<?php foreach ($terms as $term ) : ?>
 				<li><input class="check" type="checkbox" name="filter_expertise[]" value="<?php echo $term->slug; ?>"  id="expertise_<?php echo $term->slug; ?>" /><label for="expertise_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"> <?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
@@ -189,7 +189,7 @@ class add_fields
             'hide_empty' => false,  ) ); 
         ?>
 		<p id="2"  class="default"><i class="icon ion-android-add-circle"></i> Profil 
-			<ul class="job_types default"  id="20">
+			<ul class="job_types default colonne"  id="20">
 			<?php foreach ($terms as $term ) : ?>
 				<li><input class="check" type="checkbox" name="filter_profil[]" value="<?php echo $term->slug; ?>"  id="profil_<?php echo $term->slug; ?>" /><label for="profil_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
@@ -248,7 +248,7 @@ class add_fields
             'hide_empty' => false,  ) ); 
         ?>
 		<p id="3" class="default"><i class="icon ion-android-add-circle"></i> Diagnostic
-			<ul class="job_types default"  id="30">
+			<ul class="job_types default colonne"  id="30">
 				<?php foreach ($terms as $term ) : ?>
 				<li><input class="check" type="checkbox" name="filter_diagnostic[]" value="<?php echo $term->slug; ?>"  id="diagnostic_<?php echo $term->slug; ?>" /><label for="diagnostic_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
@@ -310,7 +310,7 @@ class add_fields
             'hide_empty' => false,  ) ); 
         ?>
 			<p  id="4" class="default"><i class="icon ion-android-add-circle"></i> Niveau d'expérience
-				<ul class="job_types default"  id="40">
+				<ul class="job_types default colonne"  id="40">
 				<?php foreach ($terms as $term ) : ?>
 					<li><input class="check" type="checkbox" name="filter_experience[]" value="<?php echo $term->slug; ?>"  id="experience_<?php echo $term->slug; ?>" /><label for="experience_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 				<?php endforeach; ?>		
@@ -381,7 +381,7 @@ class add_fields
             'hide_empty' => false,  ) ); 
         ?>
 		<p id="5" class="default"><i class="icon ion-android-add-circle"></i> Salaire 
-			<ul class="job_types default"  id="50">
+			<ul class="job_types default colonne"  id="50">
 			<?php foreach ($terms as $term ) : ?>
 				<li><input class="check" type="checkbox" name="filter_salaire[]" value="<?php echo $term->slug; ?>"  id="salaire_<?php echo $term->slug; ?>" /><label for="salaire_<?php echo $term->slug; ?>" class="<?php echo sanitize_title( $term->name ); ?>"><?php echo $term->name; ?></label></li>
 			<?php endforeach; ?>
@@ -423,10 +423,10 @@ class add_fields
 		$zones= $region->getZone();
 		?>
 		<p id="6" class="default"><i class="icon ion-android-add-circle"></i> Région 
-			<ul class="job_types default"  id="60">
-				<?php foreach ($zones as $region) {?>
-				<li><input name="filter_zone[]" value="<?php echo $region ?>" id="zone_<?php echo $region ?>"class="check" type="checkbox"><label for="zone_<?php echo $region ?>"><?php echo $region ?></label></li>
-				<?php } ?>
+			<ul class="job_types default colonne"  id="60">
+				<?php foreach ($zones as $region) { ?>
+						<li><input name="filter_zone[]" value="<?php echo $region ?>" id="zone_<?php echo $region ?>"class="check" type="checkbox"><label for="zone_<?php echo $region ?>"><?php echo $region ?></label></li>						
+					<?php } ?>
 			</ul>
 		</p>
 		<?php
